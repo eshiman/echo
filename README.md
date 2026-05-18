@@ -25,6 +25,8 @@ I did find instructions here: https://github.com/GoogleCloudPlatform/python-docs
 I did this a little while ago on my macbook using brew, but I'd rather link to instructions instead of writing up instructions for something I haven't done recently.
 
 3) Run the script!
+
+One last note --- if you aren't on macos, you might have to substitute the boop sound with another file, or you can comment that section out.
 ```
 python3 main.py
 ```
