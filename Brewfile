@@ -1,0 +1,5 @@
+tap "homebrew/bundle"
+tap "homebrew/core"
+brew "pdftk-java"
+brew "portaudio"
+brew "python@3.10"
