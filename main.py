@@ -7,6 +7,8 @@ import wave
 import os
 import time
 
+# Here is one number you can adjust!
+# I played around with the threshold sound -- which from what I recall is the minimum amount of sound from your mic that counts as it being used.
 THRESHOLD = 300
 CHUNK_SIZE = 1024
 FORMAT = pyaudio.paInt16
@@ -98,10 +100,17 @@ def record():
             snd_started = True
         elif silent and snd_started:
             num_silent += 1
+        # Below this line is another number you can adjust!
+        # It describes how long is a given audio sample you will use to detect silence
+        # If you make these too small then it will be much more likely to detect silence
+        # If you make these two big then you are much less likely to detect a silence
         if t_time > 200:
             num_silent = 0
             t_time = 0
-            print("time!")
+        # This is the last number you can adjust!
+        # this last number determines what proportion of the time sample has to be silent for silence to be detected.
+        # If it's too small, silence is detected more often
+        # If it's too big, then you would have to be silent for a while for silence to be detected.
         if snd_started and num_silent > 90:
             break
 
@@ -140,7 +149,6 @@ def play(path):
                     output=True)
 
     data = wf.readframes(CHUNK_SIZE)
-    print("here")
     while data != b'':
         stream.write(data)
         data = wf.readframes(CHUNK_SIZE)
